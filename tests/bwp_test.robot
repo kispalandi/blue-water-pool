@@ -47,6 +47,7 @@ Api Call Test
     ${email}    Set Variable    ${body}[0][email]
     ${id}    Set Variable    ${body}[0][id]
 
+    Wait Until Page Contains Element    ${ADD_BUTTON}
     Click Button    ${ADD_BUTTON}
 
     Wait Until Element Is Visible    ${CUSTOMER_NAME}    timeout=10s
@@ -57,37 +58,10 @@ Api Call Test
 
     Click Button    ${SAVE_BUTTON}
     Wait Until Element Is Visible    ${CUSTOMER_GRID}    timeout=10s
-
-# Navigate To Locations Menu
-#     Open Location Menu
-
-# Record User Location Data
-#     Open Location Menu
-#     Click Button    ${ADD_BUTTON}
-
-#     Create Session    ${SESSION_NAME}    ${USER_DATA_API}
-#     ${response}    Get On Session    ${SESSION_NAME}    ${USER_DATA_API}
-#     Should Be Equal As Strings    ${response.status_code}    200
-#     ${body}    Set Variable    ${response.json()}
-    
-#     Log    ${body}
-
-#     ${city}    Set Variable    ${body}[0][city]
-#     ${zip_code}    Set Variable    ${body}[0][zip_code]
-#     ${street_name}    Set Variable    ${body}[0][street_name]
-#     ${street_address}    Set Variable    ${body}[0][street_address]
-#     Input Text    ${LOCATION_CUSTOMER}    ${CUSTOMER_NAME}
-#     Select Checkbox    ${CUSTOMER_DROPDOWN}
-#     Input Text    ${CITY}    ${city}
-#     Input Text    ${ZIP_CODE}    ${zip_code}
-#     Input Text    ${STREET_NAME}    ${street_name}
-#     Input Text    ${HOUSE_NUMBER}    ${street_address}
-
-#     Click Button    ${SAVE_BUTTON}
-#     Wait Until Element Is Visible    ${LOCATIONS_GRID}    timeout=10s
-
-Fill Customer Location Form
+	
+	Fill Customer Location Form
     Open Location Menu
+    Wait Until Page Contains Element    ${ADD_BUTTON}
     Click Button    ${ADD_BUTTON}    # Kattintás az űrlap hozzáadás gombjára
     Wait Until Element Is Visible    ${LOCATION_CUSTOMER}    timeout=10s    # Várakozás az ügyfél legördülő menü megjelenésére
     Select From List By Label    ${LOCATION_CUSTOMER_DROPDOWN}    ${customer_name}    # Ügyfél kiválasztása a legördülő menüből
